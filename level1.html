@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Level 1 - Pemula</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Fredoka', sans-serif;
+        }
+
+        .btn-game:hover {
+            transform: scale(1.05);
+        }
+
+        .btn-game:active {
+            transform: scale(0.97);
+        }
+    </style>
+</head>
+
+<body class="bg-gradient-to-b from-blue-100 to-blue-300 min-h-screen flex flex-col items-center p-6">
+
+    <!-- Judul -->
+    <h1 class="text-4xl md:text-5xl font-extrabold text-pink-600 mb-4 text-center drop-shadow-lg">
+        🎮 Level 1: Pemula
+    </h1>
+
+    <!-- Deskripsi -->
+    <p class="text-center text-gray-800 text-lg md:text-xl mb-6 max-w-xl px-2">
+        Di level ini, kamu akan mempelajari gerakan dasar senam yang cocok untuk semua usia!
+        Fokus pada pemanasan ringan, pernapasan, dan koordinasi tubuh 💪
+    </p>
+
+    <!-- Kartu Gerakan -->
+    <div class="grid grid-cols-1 gap-4 w-full max-w-sm mb-8">
+        <button
+            class="btn-game bg-white border-2 border-pink-300 shadow-lg rounded-2xl p-4 text-pink-700 font-bold text-lg hover:bg-pink-100 transition duration-200">
+            🏃 Melompat Jack
+        </button>
+        <button
+            class="btn-game bg-white border-2 border-yellow-300 shadow-lg rounded-2xl p-4 text-yellow-700 font-bold text-lg hover:bg-yellow-100 transition duration-200">
+            💪 Lingkaran Lengan
+        </button>
+        <button
+            class="btn-game bg-white border-2 border-green-300 shadow-lg rounded-2xl p-4 text-green-700 font-bold text-lg hover:bg-green-100 transition duration-200">
+            🎿 Ski Hop
+        </button>
+        <button
+            class="btn-game bg-white border-2 border-purple-300 shadow-lg rounded-2xl p-4 text-purple-700 font-bold text-lg hover:bg-purple-100 transition duration-200">
+            🔄 Rotasi Pinggul
+        </button>
+    </div>
+
+    <!-- Tombol Mulai -->
+    <a href="gif.html" onclick="playClick()"
+        class="btn-game bg-green-500 text-white px-8 py-3 rounded-full font-extrabold text-lg hover:bg-green-600 transition duration-200 mb-4 shadow-lg">
+        ▶️ Mulai
+    </a>
+    <audio id="clickSound" src="click.mp3" preload="auto"></audio>
+
+    <!-- Tombol Kembali -->
+    <a href="home.html"
+        class="btn-game bg-pink-500 text-white px-6 py-2 rounded-full text-md font-semibold hover:bg-pink-600 transition duration-200 shadow-md mt-2">
+        ← Kembali ke Beranda
+    </a>
+
+    <!-- JS Audio -->
+    <script>
+        function playClick() {
+            const audio = document.getElementById("clickSound");
+            audio.currentTime = 0;
+            audio.play();
+        }
+    </script>
+
+</body>
+
+</html>

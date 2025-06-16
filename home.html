@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Selamat Datang - Edukasi Senam</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background: url('bgv1.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
+    </style>
+</head>
+
+<body class="min-h-screen flex flex-col justify-center items-center text-white p-6 bg-black/40 backdrop-blur-md">
+
+    <h1
+        class="text-4xl md:text-5xl font-extrabold mb-8 text-center bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 text-transparent bg-clip-text drop-shadow-2xl">
+        Selamat Datang di Edukasi Senam
+    </h1>
+
+    <p class="text-xl font-semibold text-center text-pink-600 mb-6"> Pilih Level untuk Memulai Senam </p>
+
+    <!-- Element audio tersembunyi -->
+    <audio id="clickSound" src="click.mp3" preload="auto"></audio>
+
+    <div class="flex flex-col gap-4 w-full max-w-xs">
+        <a href="level1.html" onclick="playClick()"
+            class="bg-white text-blue-600 font-semibold text-center py-3 rounded-xl shadow hover:bg-blue-100 transition">Level
+            1 - Pemula</a>
+        <a href="level2.html" onclick="playClick()"
+            class="bg-white text-yellow-600 font-semibold text-center py-3 rounded-xl shadow hover:bg-yellow-100 transition">Level
+            2 - Menengah</a>
+        <a href="level3.html" onclick="playClick()"
+            class="bg-white text-red-600 font-semibold text-center py-3 rounded-xl shadow hover:bg-red-100 transition">Level
+            3 - Lanjutan</a>
+    </div>
+
+    <!-- Script untuk memutar suara -->
+    <script>
+        function playClick() {
+            const audio = document.getElementById("clickSound");
+            audio.currentTime = 0; // mulai dari awal setiap kali diklik
+            audio.play();
+        }
+    </script>
+
+</body>
+
+</html>

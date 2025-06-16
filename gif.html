@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Senam Level Menengah</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background: url('bg.png') no-repeat center center fixed;
+            background-size: cover;
+        }
+    </style>
+</head>
+
+<body class="min-h-screen flex flex-col items-center justify-center text-center p-6 bg-opacity-80 backdrop-blur-md">
+
+    <h1 class="text-3xl font-bold text-white drop-shadow-lg mb-4">💃 Gerakan Senam - Menengah</h1>
+
+    <div id="message" class="text-white text-xl font-semibold mb-4">Klik tombol di bawah untuk mulai</div>
+
+    <button id="startBtn" class="mb-6 bg-green-500 text-white px-6 py-2 rounded hover:bg-green-600 transition">
+        ▶️ Mulai Senam
+    </button>
+
+    <div class="bg-white bg-opacity-70 rounded-xl p-4 shadow-lg mb-4 hidden" id="gifContainer">
+        <img id="gifPlayer" src="" alt="Gerakan Senam Pemula" class="w-64 h-64 object-contain" />
+    </div>
+
+    <div id="timerBox" class="text-xl font-bold text-white bg-black bg-opacity-40 rounded-full px-4 py-2 mb-6 hidden">
+        Waktu tersisa: <span id="timer">10</span> detik
+    </div>
+
+    <a href="index.html" class="bg-blue-500 text-white px-6 py-2 rounded hover:bg-blue-600 transition">
+        ← Kembali ke Beranda
+    </a>
+
+    <audio id="bgMusic" src="bgmusic.mp3" loop preload="auto"></audio>
+    <audio id="horaySound" src="horay.mp3" preload="auto"></audio>
+
+    <script>
+        const gifs = [
+            "pemula/gif1.gif",
+            "pemula/gif2.gif",
+            "pemula/gif3.gif",
+            "pemula/gif4.gif"
+        ];
+
+        let currentIndex = 0;
+        let timer = 10;
+        let interval;
+        const gifPlayer = document.getElementById("gifPlayer");
+        const timerDisplay = document.getElementById("timer");
+        const message = document.getElementById("message");
+        const timerBox = document.getElementById("timerBox");
+        const bgMusic = document.getElementById("bgMusic");
+        const horaySound = document.getElementById("horaySound");
+        const startBtn = document.getElementById("startBtn");
+        const gifContainer = document.getElementById("gifContainer");
+
+        bgMusic.volume = 0.4;
+
+        function updateGif() {
+            const timestamp = new Date().getTime();
+            gifPlayer.src = `${gifs[currentIndex]}?t=${timestamp}`;
+            timer = 10;
+            timerDisplay.textContent = timer;
+        }
+
+        function nextGif() {
+            if (currentIndex < gifs.length - 1) {
+                currentIndex++;
+                updateGif();
+            } else {
+                clearInterval(interval);
+                gifPlayer.style.display = "none";
+                timerBox.style.display = "none";
+                horaySound.play();
+                message.innerHTML = `🎊 <span class='text-2xl font-bold text-blue-500'>Selamat!</span> <span class="text-blue-300">Kamu berhasil menyelesaikan semua gerakan!</span>`;
+            }
+        }
+
+        function startRotation() {
+            updateGif();
+            interval = setInterval(() => {
+                timer--;
+                timerDisplay.textContent = timer;
+                if (timer <= 0) nextGif();
+            }, 1000);
+        }
+
+        startBtn.addEventListener("click", () => {
+            startBtn.style.display = "none";
+            gifContainer.classList.remove("hidden");
+            timerBox.classList.remove("hidden");
+            message.textContent = "Semangat ya! 💪";
+            bgMusic.play(); // mulai musik setelah interaksi pengguna
+            startRotation();
+        });
+    </script>
+
+</body>
+
+</html>
